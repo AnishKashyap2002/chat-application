@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { rooms } from "../helpers/constants";
 
-export const RoomCard = ({ room, setRoom, userRoom }: any) => {
+export const RoomCard = ({ room, userRoom }: any) => {
     const element = document.getElementById("selectedRoom");
     useEffect(() => {
         if (element) {
@@ -35,13 +35,7 @@ export const RoomCard = ({ room, setRoom, userRoom }: any) => {
     );
 };
 
-export default function SideBar({
-    setRoom,
-    userRoom,
-}: {
-    setRoom: React.Dispatch<React.SetStateAction<string>>;
-    userRoom: string | null;
-}) {
+export default function SideBar({ userRoom }: { userRoom: string | null }) {
     return (
         <div
             className="pl-4 gap-3 w-screen
@@ -52,7 +46,6 @@ export default function SideBar({
                 <RoomCard
                     key={index}
                     room={room}
-                    setRoom={setRoom}
                     userRoom={userRoom}
                 />
             ))}

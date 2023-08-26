@@ -23,9 +23,9 @@ export default function Login({
         setForm(initialValues);
     };
 
-    const handleSignUp = (e: React.FormEvent) => {
-        e.preventDefault();
-    };
+    // const handleSignUp = (e: React.FormEvent) => {
+    //     e.preventDefault();
+    // };
 
     // const handleLogIn = (e: React.FormEvent) => {
     //     e.preventDefault();

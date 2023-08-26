@@ -1,4 +1,3 @@
-import React from "react";
 import { BsFillChatFill } from "react-icons/bs";
 
 export default function Header() {
