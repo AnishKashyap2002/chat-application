@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { socket } from "../helpers";
 import { toast } from "react-hot-toast";
 
@@ -36,11 +36,12 @@ export default function Login({
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (!form.username) {
+            toast.error("Username is not given");
             return;
         }
 
         socket.emit("username-taken", form.username);
-        console.log(form.username);
+        console.log("Is is connected: ", socket.connected);
         socket.on("is-username-taken", ({ taken }) => {
             console.log(taken);
             if (taken) {
@@ -72,6 +73,12 @@ export default function Login({
         const newForm = { ...form, [e.target.name]: e.target.value };
         setForm(newForm);
     };
+
+    useEffect(() => {
+        socket.on("connection", () => {
+            console.log("Connected To Server");
+        });
+    }, []);
 
     return (
         <div className="w-full h-screen flex items-center justify-center">

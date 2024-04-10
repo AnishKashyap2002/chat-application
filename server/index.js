@@ -33,6 +33,7 @@ const io = new Server(server, {
 // const io = require("socket.io")(http);
 
 io.on("connection", (socket) => {
+    console.log("socket is done", socket.id);
     socket.on("joined", ({ name, room }) => {
         const user = addUser(socket.id, name, room);
         console.log("all users", users);
@@ -60,7 +61,8 @@ io.on("connection", (socket) => {
 
         // socket.broadcast.emit("receive-message", data);
 
-        io.in(user.room).emit("message", { user: user.name, text: data });
+        if (user?.room)
+            io.in(user.room).emit("message", { user: user.name, text: data });
     });
     socket.on("disconnect", () => {
         console.log("User disconnected");
